@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="theme-color" content="#0a0a0f">
+  <title>SmartSwitch | AI-Powered Home Control</title>
+
+  <!-- Compiled Tailwind CSS -->
+  <link rel="stylesheet" href="/dist/output.css">
+    
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Socket.IO -->
+  <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+
+  <!-- CSS Files -->
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/components.css">
+  <link rel="stylesheet" href="styles/animations.css">
+  <link rel="stylesheet" href="styles/pages/dashboard.css">
+  <link rel="stylesheet" href="styles/responsive.css">
+</head>
+
+<body class="bg-background text-foreground font-sans antialiased">
+	<!-- Global Loading Indicator -->
+	<div id="global-loading" class="fixed inset-0 bg-background/80 backdrop-blur-sm z-[9999] hidden items-center justify-center">
+  	<div class="text-center">
+    	<div class="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+    	<p class="text-primary font-semibold">Loading...</p>
+  	</div>
+	</div>
+
+	<style>
+  	#global-loading {
+    	display: none;
+  	}
+  
+  	#global-loading.flex {
+    	display: flex;
+  	}
+	</style>
+    
+  <!-- Login Screen -->
+  <div id="login-screen" class="login-screen">
+    <div class="login-background"></div>
+    <div class="login-container">
+      <div class="logo-container">
+        <div class="logo-orb">
+          <i class="fas fa-bolt"></i>
+        </div>
+      </div>
+
+      <h1 class="app-title">SMART<span class="text-primary">SWITCH</span></h1>
+      <p class="app-subtitle">AI-Powered Home Control v3.0</p>
+
+      <form id="login-form" class="login-form">
+        <div class="input-group">
+          <i class="fas fa-envelope"></i>
+          <input id="email" type="email" placeholder="email@example.com" required>
+        </div>
+
+        <div class="input-group">
+          <i class="fas fa-lock"></i>
+          <input id="password" type="password" placeholder="••••••••" required>
+        </div>
+
+        <button type="submit" class="btn-primary">
+          <i class="fas fa-sign-in-alt"></i>
+          Access AI Dashboard
+        </button>
+      </form>
+
+      <div class="login-footer">
+        <p><i class="fas fa-shield-alt"></i> Secure • Encrypted • AI-Powered</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main App -->
+  <div id="app" class="app-container" style="display:none;">
+    <!-- Sidebar -->
+    <aside id="sidebar" class="sidebar"></aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Header -->
+      <header class="main-header">
+        <div class="flex items-center justify-between">
+          <button id="sidebar-toggle" class="lg:hidden text-2xl">
+            <i class="fas fa-bars"></i>
+          </button>
+          <div class="flex items-center gap-4">
+            <div class="relative">
+              <input type="search" placeholder="Search devices..." class="pl-10 pr-4 py-2 rounded-lg bg-muted/30 border border-border focus:outline-none focus:border-primary">
+              <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"></i>
+            </div>
+            <button class="relative notification-bell">
+              <i class="fas fa-bell text-xl"></i>
+              <span class="absolute -top-1 -right-1 w-4 h-4 bg-destructive rounded-full text-xs flex items-center justify-center">0</span>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Page Content -->
+      <div id="page-content" class="page-content">
+        <section id="dashboard-page" class="page" style="display: none;"></section>
+        <section id="places-page" class="page" style="display: none;"></section>
+        <section id="boards-page" class="page" style="display: none;"></section>
+        <section id="schedules-page" class="page" style="display: none;"></section>
+        <section id="routines-page" class="page" style="display: none;"></section>
+        <section id="devices-page" class="page" style="display: none;"></section>
+        <section id="settings-page" class="page" style="display: none;"></section>
+      </div>
+    </main>
+
+    <!-- Notification Center -->
+    <div id="notification-center"></div>
+  </div>
+
+  <!-- JavaScript Modules -->
+  <script type="module" src="scripts/app.js"></script>
+</body>
+</html>

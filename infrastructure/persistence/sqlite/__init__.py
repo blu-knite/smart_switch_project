@@ -1,0 +1,3 @@
+"""
+SQLite-specific persistence implementation.
+"""
